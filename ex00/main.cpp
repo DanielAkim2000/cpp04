@@ -21,33 +21,6 @@ int main()
 	delete j;
 	delete i;
 
-	const Animal *animals[4];
-	animals[0] = new Dog();
-	animals[1] = new Cat();
-	animals[2] = new Dog();
-	animals[3] = new Cat();
-
-	for (int idx = 0; idx < 4; ++idx)
-	{
-		std::cout << animals[idx]->getType() << " makes: ";
-		animals[idx]->makeSound();
-	}
-
-	for (int idx = 0; idx < 4; ++idx)
-	{
-		delete animals[idx];
-	}
-
-	Dog a;
-	Dog b(a);
-	Dog c;
-	c = b;
-
-	Cat d;
-	Cat e(d);
-	Cat f;
-	f = e;
-
 	const WrongAnimal *wrongMeta = new WrongAnimal();
 	const WrongAnimal *wrongCat = new WrongCat();
 
@@ -57,6 +30,22 @@ int main()
 
 	delete wrongMeta;
 	delete wrongCat;
+
+	Animal stackAnimal;
+	Dog stackDog;
+	Cat stackCat;
+	Animal *pack[2];
+	pack[0] = new Dog();
+	pack[1] = new Cat();
+	pack[0]->makeSound();
+	pack[1]->makeSound();
+	delete pack[0];
+	delete pack[1];
+	Dog dogCopy(stackDog);
+	Cat catCopy(stackCat);
+	(void)stackAnimal;
+	(void)dogCopy;
+	(void)catCopy;
 
 	return 0;
 }

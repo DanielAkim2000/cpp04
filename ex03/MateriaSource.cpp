@@ -57,9 +57,11 @@ void MateriaSource::learnMateria(AMateria *m)
 		if (!slots[i])
 		{
 			slots[i] = m->clone();
+			delete m;
 			return;
 		}
 	}
+	delete m;
 }
 
 AMateria *MateriaSource::createMateria(std::string const &type)
